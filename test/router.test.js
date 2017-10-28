@@ -3,7 +3,7 @@ const pluralize = require('pluralize');
 const server = require('./testServer');
 const describeApi = require('parkes-api-test');
 
-function describeRoute(name, actions, options) {
+function describeRoute(name, actions, options = {}) {
 	const collectionName = pluralize(name);
 	const id = pluralize.singular(name);
 	const { parent } = options;
@@ -18,6 +18,9 @@ function describeRoute(name, actions, options) {
 		remove: { method: 'delete', path: `${prefix}/${collectionName}` },
 	};
 	const testRoutes = [];
+
+	// eslint-disable-next-line no-param-reassign
+	actions = actions || Object.keys(routes);
 
 	// Validate list of actions
 	actions.forEach((action) => {
