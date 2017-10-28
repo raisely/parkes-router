@@ -17,7 +17,7 @@ class MockController {
 
 				// Index must pass data as an array
 				if (action === 'index') {
-					ctx.state = { collection: [data] };
+					ctx.state = { data: { collection: [data] } };
 				} else {
 					ctx.state = { data };
 				}
@@ -34,13 +34,13 @@ class MockController {
   */
 class SimpleRecord {
 	constructor(values) {
-		if (values) Object.assign({}, values);
+		if (values) Object.assign(this, values);
 	}
 }
 
 // Create simple methods for presenter to succeed
 ['toPublic', 'toPrivate'].forEach((method) => {
-	SimpleRecord[method] = function addMethodName() {
+	SimpleRecord.prototype[method] = function addMethodName() {
 		this.presentationMethod = method;
 		return this;
 	};
