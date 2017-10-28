@@ -32,14 +32,20 @@ function describeRoute(name, actions, options = {}) {
 
 		// Ensure correct routing
 		if (actions.includes(action)) {
-			if (action === 'index') {
-				route.expect = {
-					name,
-					path: route.path,
-					action: route.action,
-					presentationMethod: 'toPublic',
-				};
+			route.expect = {
+				action,
+				name,
+				params: {},
+				path: route.path,
+				presentationMethod: 'toPublic',
+			};
+
+			if (['show', 'update', 'delete'].includes(action)) {
+				route.expect.params[id] = id;
 			}
+
+			// Expect collection from index
+			if (action === 'index') route.expect = [route.expect];
 
 			if (['index', 'show'].includes(action)) {
 				testRoutes.push(privateAction(route));
