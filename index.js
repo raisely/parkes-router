@@ -1,3 +1,3 @@
-import { ParkesRouter } from './lib/router';
+const ParkesRouter = require('./lib/router');
 
 module.exports = ParkesRouter;
