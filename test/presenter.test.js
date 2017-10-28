@@ -1,4 +1,5 @@
 const ParkesRouter = require('../index');
+const { expect } = require('chai');
 
 const context = describe;
 
@@ -8,14 +9,14 @@ describe('presenter', () => {
 			it('is true', () => {
 				const ctx = { query: { private: 1 } };
 				const result = ParkesRouter.isPrivate(ctx);
-				expect(result).toBeTruthy();
+				expect(result).to.be.true;
 			});
 		});
 		context('when private=false', () => {
 			it('is false', () => {
 				const ctx = { query: { private: false } };
 				const result = ParkesRouter.isPrivate(ctx);
-				expect(result).toBeFalsy();
+				expect(result).to.be.false;
 			});
 		});
 	});
