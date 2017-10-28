@@ -1,4 +1,5 @@
 const pluralize = require('pluralize');
+const _ = require('lodash');
 
 const server = require('./testServer');
 const describeApi = require('parkes-api-test');
@@ -70,8 +71,12 @@ describe('ParkesRouter', () => {
 });
 
 function privateAction(route) {
-	const privateRoute = Object.assign({}, route);
+	const privateRoute = _.cloneDeep(route);
 	privateRoute.path += '?private=true';
-	privateRoute.presentationMethod = 'toPrivate';
+	if (Array.isArray(privateRoute.expect)) {
+		privateRoute.expect[0].presentationMethod = 'toPrivate';
+	} else {
+		privateRoute.expect.presentationMethod = 'toPrivate';
+	}
 	return privateRoute;
 }
