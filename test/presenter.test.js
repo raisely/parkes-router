@@ -3,6 +3,8 @@ const { expect } = require('chai');
 
 const context = describe;
 
+/* eslint-disable no-unused-expressions */
+
 describe('presenter', () => {
 	describe('isPrivate', () => {
 		context('when private=1', () => {
