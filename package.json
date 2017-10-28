@@ -1,0 +1,47 @@
+{
+  "name": "parkes-router",
+  "version": "0.1.0",
+  "description": "Extension to Koa Router to simply define RESTful resources",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raisely/parkes-router.git"
+  },
+  "keywords": [
+    "koa",
+    "router",
+    "rest"
+  ],
+  "author": "Agency Ventures",
+  "license": "KWPL",
+  "bugs": {
+    "url": "https://github.com/raisely/parkes-router/issues"
+  },
+  "homepage": "https://github.com/raisely/parkes-router#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "chai": "^4.1.2",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^21.2.1",
+    "koa": "^2.3.0",
+    "lodash": "^4.17.4",
+    "mocha": "^4.0.1",
+    "sinon": "^4.0.1"
+  },
+  "dependencies": {
+    "koa-router": "^7.2.1"
+  }
+}
