@@ -15,14 +15,23 @@ api
 	.resource('parent', parentController, (nested) => {
 		nested.resource('child', childController);
 	})
-	.resource('sibling', siblingController, ['index', 'findOne']);
+	.resource('sibling', siblingController, ['index', 'show']);
+
+async function errorHandler(ctx, next) {
+	try {
+		await next();
+	} catch (err) {
+		// eslint-disable-next-line no-console
+		console.error(err);
+	}
+}
 
 const app = new Koa();
 
-app.use(api.middleware());
-const server = app.listen(PORT).on('error', (err) => {
-	// eslint-disable-next-line no-console
-	console.error(err);
-});
+app
+	.use(errorHandler)
+	.use(api.routes());
+
+const server = app.listen(PORT);
 
 module.exports = server;
