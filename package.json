@@ -4,7 +4,7 @@
   "description": "Extension to Koa Router to simply define RESTful resources",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha"
   },
   "jest": {
     "testEnvironment": "node"
@@ -36,10 +36,10 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "jest": "^21.2.1",
     "koa": "^2.3.0",
     "lodash": "^4.17.4",
     "mocha": "^4.0.1",
+    "mochawrapper": "0.0.34",
     "sinon": "^4.0.1"
   },
   "dependencies": {
