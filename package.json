@@ -30,6 +30,7 @@
   "devDependencies": {
     "babel-eslint": "^8.0.1",
     "chai": "^4.1.2",
+    "describeApi": "file:../parkes-api-test",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -42,6 +43,7 @@
     "sinon": "^4.0.1"
   },
   "dependencies": {
-    "koa-router": "^7.2.1"
+    "koa-router": "^7.2.1",
+    "pluralize": "^7.0.0"
   }
 }
