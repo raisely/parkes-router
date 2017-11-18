@@ -1,6 +1,16 @@
 const _ = require('lodash');
 
-const defaultActions = ['index', 'show', 'create', 'update', 'remove'];
+const defaultActions = ['index', 'show', 'create', 'update', 'destroy'];
+
+/**
+  * @description
+  * A simple object that provides toPublic
+  */
+class SimpleRecord {
+	constructor(values) {
+		if (values) Object.assign(this, values);
+	}
+}
 
 class MockController {
 	constructor(options) {
@@ -25,16 +35,6 @@ class MockController {
 				await next();
 			};
 		});
-	}
-}
-
-/**
-  * @description
-  * A simple object that provides toPublic
-  */
-class SimpleRecord {
-	constructor(values) {
-		if (values) Object.assign(this, values);
 	}
 }
 

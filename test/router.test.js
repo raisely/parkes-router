@@ -16,7 +16,7 @@ function describeRoute(name, actions, options = {}) {
 		show: { method: 'get', path: `${prefix}/${collectionName}/${id}` },
 		create: { method: 'post', path: `${prefix}/${collectionName}/` },
 		update: { method: 'patch', path: `${prefix}/${collectionName}/${id}` },
-		remove: { method: 'delete', path: `${prefix}/${collectionName}/${id}` },
+		destroy: { method: 'delete', path: `${prefix}/${collectionName}/${id}` },
 	};
 	const testRoutes = [];
 
