@@ -59,7 +59,7 @@ function describeRoute(name, actions, options = {}) {
 		testRoutes.push(route);
 	});
 
-	describeApi(options.name || name, server, testRoutes);
+	describeApi(server, testRoutes);
 }
 
 describe('ParkesRouter', () => {
