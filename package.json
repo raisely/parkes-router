@@ -38,6 +38,7 @@
     "eslint-plugin-react": "^7.4.0",
     "koa": "^2.3.0",
     "mocha": "^4.0.1",
+    "parkes-api-test": "file:../parkes-api-test",
     "sinon": "^4.0.1"
   },
   "dependencies": {
