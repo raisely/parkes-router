@@ -1,6 +1,6 @@
 {
   "name": "parkes-router",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Extension to Koa Router to simply define RESTful resources",
   "main": "index.js",
   "scripts": {
