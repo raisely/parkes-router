@@ -87,13 +87,6 @@ router.resource('collection', controller, ['index']);
 // mounted as (GET) /collection
 ```
 
-### GET `show`
-Displays a specific item (by key) within a parkes-controller collection.
-```js
-router.resource('collection', controller, ['show']);
-// mounted as (GET) /collection/:key
-```
-
 ### POST `create`
 Allows the creation of items within a parkes-controller collection.
 ```js
