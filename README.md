@@ -45,7 +45,7 @@ app.use(mount('/v1', router.routes()));
 ```
 # Usage
 pakes-router allows you to utilize a custom `router.resource()` method allowing the nesting
-and chaning of parkes-controllers together, which can be limited to specific CRUD
+and chaining of parkes-controllers together, which can be limited to specific CRUD
 actions.
 
 ## Implementation
@@ -63,12 +63,12 @@ router.resource('collection-name', parkesController, ['show', 'index', 'create',
 ### Nested collection resource
 
 ```js
-router.resource('parent-controller', parentParkesController, (parent) => {
-	// child with all methods allowed
-	parent.resource('child-controller-1', childParkesController1);
-	// child with limited CRUD actions
-	parent.resource('child-controller-2', childParkesController2, ['index', 'create', 'destroy']);
+router.resource('parent-controller', parentController, (parent) => {
+	// Good practice is to limit children to just create and index, use the resource
+	// directly for others
+	parent.resource('child-controller', childController, ['index', 'create']);
 });
+router.resource('child-controller', childParkesController, ['index', 'create']);
 ```
 
 ## Method overview
