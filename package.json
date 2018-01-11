@@ -4,6 +4,7 @@
   "description": "Extension to Koa Router to simply define RESTful resources",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha"
   },
   "jest": {
