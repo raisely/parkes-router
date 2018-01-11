@@ -68,7 +68,8 @@ router.resource('parent-controller', parentController, (parent) => {
 	// directly for others
 	parent.resource('child-controller', childController, ['index', 'create']);
 });
-router.resource('child-controller', childParkesController, ['index', 'create']);
+// Allow all actions on the child directly
+router.resource('child-controller', childController);
 ```
 
 ## Method overview
