@@ -1,10 +1,16 @@
-A Koa Router extension supporting dynamic CRUD resource nesting with Parkes Controllers.
+A [Koa Router](https://github.com/alexmingoia/koa-router) extension supporting dynamic CRUD resource nesting with
+[parkes-controllers](https://github.com/raisely/parkes-controller)
 
 parkes-router helps reduce redundant syntax within resource routing by providing
 a streamlined way to describe resources and it's supported methods (show, index,
 create, update, and destroy).
 
+## Dependencies
+parkes-router is built for [koa 2](https://github.com/koajs/koa) and requires async/await in node 7.6
+
 # Getting Started
+
+`npm install --save raisely/parkes-router`
 
 ```js
 const Koa = require('koa');
