@@ -50,7 +50,7 @@ parkes-router expects controllers to have methods specific to the CRUD
 actions it preforms.
 
 | action | HTTP method | URL path | example |
-| --- | --- | ---- |
+| --- | --- | --- | --- |
 | index | GET | _/resource_ | GET /apples |
 | show | GET | _/resource/:resource_ | GET /apples/1 |
 | create | POST | _/resource_ | POST /apples |
