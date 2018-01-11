@@ -43,27 +43,37 @@ app.use(mount('/v1', router.routes()));
 
 ```
 # Usage
-pakes-router allows you to utilize a custom `router.resource()` method allowing the nesting
-and chaning of controllers together, which can be limited to specific CRUD
-actions.
+pakes-router lets you use `router.resource()` to generate RESTful CRUD routes
+and nest resources.
 
-parkes-router expects controllers to already have methods specific to the CRUD
-actions it preforms. In example, a controller supporting the `index` action should
-have a method named `index`, and so forth.
+parkes-router expects controllers to have methods specific to the CRUD
+actions it preforms.
+
+| action | HTTP method | URL path | example |
+| --- | --- | ---- |
+| index | GET | _/resource_ | GET /apples |
+| show | GET | _/resource/:resource_ | GET /apples/1 |
+| create | POST | _/resource_ | POST /apples |
+| update | PATCH | _/resource_ | PATCH /apples/1 |
+| destroy | DELETE | _/resource/:resource_ | DELETE /apples/1 |
 
 ## Implementation
 
 Collection names are automatically pluralized, so names such as `apple` will become
 `apples` when mapped as endpoints.
 
+For actions requiring a resource id (`create`, `update`, `destroy`), the route has a
+parameter by the name of the resource (singular).
+(eg `/apples/:apple`)
+
 ### Non nested resource
 
 ```js
 // with all CRUD actions allowed
-router.resource('collection-name', parkesController)
+router.resource('collection-name', controller)
 
 // bound to specific CRUD actions
-router.resource('collection-name', parkesController, ['show', 'index', 'create', 'update', 'destroy'])
+router.resource('collection-name', controller, ['show', 'index', 'create', 'update', 'destroy'])
 ```
 
 ### Nested collection resource
