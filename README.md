@@ -1,5 +1,5 @@
-A [Koa Router](https://github.com/alexmingoia/koa-router) extension supporting dynamic CRUD resource nesting with
-[parkes-controllers](https://github.com/raisely/parkes-controller)
+A [Koa Router](https://github.com/alexmingoia/koa-router) extension supporting
+dynamic CRUD resource nesting via controllers.
 
 parkes-router helps reduce redundant syntax within resource routing by providing
 a streamlined way to describe resources and it's supported methods (show, index,
@@ -16,17 +16,16 @@ parkes-router is built for [koa 2](https://github.com/koajs/koa) and requires as
 const Koa = require('koa');
 const ParkesRouter = require('parkes-router');
 
-// include the parkes-controllers you need
-const fruitController = require('./path/to/parkes/controller-1');
-const appleController = require('./path/to/parkes/controller-2');
-const dairyController = require('./path/to/parkes/controller-3');
-
+// include the controllers you need
+const fruitController = require('./path/to/controller-1');
+const appleController = require('./path/to/controller-2');
+const dairyController = require('./path/to/controller-3');
 
 // setup the parkes-router
 const router = new ParkesRouter();
 router
-	.resource('fruit', fruitController, (campaign) => {
-		campaign.resource('apples', appleController, ['index']);
+	.resource('fruit', fruitController, (parent) => {
+		parent.resource('apple', appleController, ['index']);
 	})
 	.resource('dairy', dairyController, ['create', 'index', 'show']);
 
@@ -45,10 +44,17 @@ app.use(mount('/v1', router.routes()));
 ```
 # Usage
 pakes-router allows you to utilize a custom `router.resource()` method allowing the nesting
-and chaining of parkes-controllers together, which can be limited to specific CRUD
+and chaning of controllers together, which can be limited to specific CRUD
 actions.
 
+parkes-router expects controllers to already have methods specific to the CRUD
+actions it preforms. In example, a controller supporting the `index` action should
+have a method named `index`, and so forth.
+
 ## Implementation
+
+Collection names are automatically pluralized, so names such as `apple` will become
+`apples` when mapped as endpoints.
 
 ### Non nested resource
 
@@ -62,48 +68,51 @@ router.resource('collection-name', parkesController, ['show', 'index', 'create',
 
 ### Nested collection resource
 
+When nesting resources, it is considered a best practice to only have a `create` and
+`index` method for parent controllers. This allows the grouping of specifc items
+(in example: `GET /fruit/1/apples`, `PATCH /apples/1`).
+
 ```js
 router.resource('parent-controller', parentController, (parent) => {
-	// Good practice is to limit children to just create and index, use the resource
-	// directly for others
-	parent.resource('child-controller', childController, ['index', 'create']);
+	// child with all methods allowed
+	parent.resource('child-controller-1', childController1);
+	// child with limited CRUD actions
+	parent.resource('child-controller-2', childController2, ['index', 'create', 'destroy']);
 });
-// Allow all actions on the child directly
-router.resource('child-controller', childController);
 ```
 
 ## Method overview
 
 ### GET `show`
-Displays a specific item (by key) within a parkes-controller collection.
+Displays a specific item (by key) within a controller collection.
 ```js
 parent.resource('collection', controller, ['show']);
 // mounted as (GET) /collection/:key
 ```
 
 ### GET `index`
-Displays a paginated item list within a parkes-controller collection.
+Displays a paginated item list within a controller collection.
 ```js
 router.resource('collection', controller, ['index']);
 // mounted as (GET) /collection
 ```
 
 ### POST `create`
-Allows the creation of items within a parkes-controller collection.
+Allows the creation of items within a controller collection.
 ```js
 router.resource('collection', controller, ['create']);
 // mounted as (POST) /collection
 ```
 
-### PUT or PATCH `update`
-Allows the updating of a specific item within a parkers-controller collection.
+### PATCH `update`
+Allows the updating of a specific item within a controller collection.
 ```js
 router.resource('collection', controller, ['update']);
-// mounted as (PUT & PATCH) /collection/:key
+// mounted as (PATCH) /collection/:key
 ```
 
 ### DELETE `destroy`
-Allows the deletion (or disabling) of a specific item within a parkers-controller collection.
+Allows the deletion (or disabling) of a specific item within a controller collection.
 ```js
 router.resource('collection', controller, ['destroy']);
 // mounted as (DELETE) /collection/:key
